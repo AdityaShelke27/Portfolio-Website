@@ -1,25 +1,26 @@
 {
   "hosting": {
+    "public": "public",
     "headers": [
       {
-        "source": "**/*.js.br",
+        "source": "/Build/*.data.br",
         "headers": [
           { "key": "Content-Encoding", "value": "br" },
-          { "key": "Content-Type", "value": "application/javascript" }
+          { "key": "Content-Type", "value": "application/octet-stream" }
         ]
       },
       {
-        "source": "**/*.wasm.br",
+        "source": "/Build/*.wasm.br",
         "headers": [
           { "key": "Content-Encoding", "value": "br" },
           { "key": "Content-Type", "value": "application/wasm" }
         ]
       },
       {
-        "source": "**/*.data.br",
+        "source": "/Build/*.js.br",
         "headers": [
           { "key": "Content-Encoding", "value": "br" },
-          { "key": "Content-Type", "value": "application/octet-stream" }
+          { "key": "Content-Type", "value": "application/javascript" }
         ]
       }
     ]

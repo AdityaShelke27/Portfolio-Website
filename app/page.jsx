@@ -18,15 +18,15 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-6xl font-bold">Aditya Shelke</h1>
+          <h1 className="text-4xl md:text-6xl font-bold">{/*Aditya Shelke*/}</h1>
           <p className="text-lg mt-4 text-gray-300">
-            Game Developer
+            {/*Game Developer*/}
           </p>
         </motion.div>
 
         {/* Projects Section */}
         <section className="mb-20">
-          <h2 className="text-3xl font-semibold mb-6">Featured Projects</h2>
+          <h2 className="text-3xl font-semibold mb-6">{/*Featured Projects*/}</h2>
 
           {/* Unity WebGL Embed */}
           <div className="w-full max-w-5xl aspect-video relative rounded-xl overflow-hidden shadow-lg border border-gray-700 build">
@@ -41,23 +41,23 @@ export default function Home() {
           </div>
 
           <p className="mt-4 text-sm text-gray-400">
-            This is an embedded Unity WebGL game. Click inside to play!
+            {/*This is an embedded Unity WebGL game. Click inside to play!*/}
           </p>
         </section>
 
         {/* About Section */}
         <section className="mb-20">
-          <h2 className="text-3xl font-semibold mb-4">About Me</h2>
+          <h2 className="text-3xl font-semibold mb-4">{/*About Me*/}</h2>
           <p className="text-gray-300 leading-relaxed">
-            I'm a Unity developer with a focus on AI-driven gameplay mechanics. I enjoy solving complex problems using neural networks, machine learning, and game design. This portfolio is a showcase of the projects and experiments I've built independently and professionally.
+            {/*I'm a Unity developer with a focus on AI-driven gameplay mechanics. I enjoy solving complex problems using neural networks, machine learning, and game design. This portfolio is a showcase of the projects and experiments I've built independently and professionally.*/}
           </p>
         </section>
 
         {/* Contact Section */}
         <section>
-          <h2 className="text-3xl font-semibold mb-4">Contact</h2>
-          <p className="text-gray-300 mb-2">Email: shelkeaditya325@gmail.com</p>
-          <p className="text-gray-300 mb-2">LinkedIn: <Link href="https://linkedin.com/in/adityashelke" className="underline text-blue-400">adityashelke</Link></p>
+          <h2 className="text-3xl font-semibold mb-4">{/*Contact*/}</h2>
+          <p className="text-gray-300 mb-2">{/*Email: shelkeaditya325@gmail.com*/}</p>
+          <p className="text-gray-300 mb-2">{/*LinkedIn: */}<Link href="https://linkedin.com/in/adityashelke" className="underline text-blue-400">{/*adityashelke*/}</Link></p>
         </section>
       </section>
     </main>
