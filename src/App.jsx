@@ -24,7 +24,7 @@ function UnityBuild({buildPath}) {
           borderRadius: "12px",
           overflow: "hidden",
           boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
-          border: "1px solid #4B5563",
+          border: "2px solid rgb(187, 187, 187)",
         }}
       >
         <iframe
@@ -74,7 +74,7 @@ function UnityBuild({buildPath}) {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gray-950 text-white px-4 md:px-12 py-10">
+    <main className="min-h-screen bg-black text-white px-4 md:px-12 py-10">
       <section className="max-w-4xl mx-auto">
         {/* Hero Section */}
         <motion.div
