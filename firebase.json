@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "build",
+    "public": "dist", // Replace with your actual build folder
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "headers": [
       {
