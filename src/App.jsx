@@ -3,9 +3,74 @@
 // File: app/page.tsx (for Next.js 13+ with App Router)
 'use client';
 import { motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
 import "./App.css";
+
+function UnityBuild({buildPath}) {
+  return (
+    <div
+      style={{
+        position: "relative",
+        maxWidth: "960px", // optional: control iframe width
+        margin: "0 auto 80px", // center on page
+      }}
+    >
+      {/* Aspect-ratio wrapper */}
+      <div
+        style={{
+          position: "relative",
+          width: "100%",
+          paddingBottom: "56.25%", // 16:9 aspect ratio
+          height: 0,
+          borderRadius: "12px",
+          overflow: "hidden",
+          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
+          border: "1px solid #4B5563",
+        }}
+      >
+        <iframe
+          src={buildPath} /*"/Build/index.html"*/
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            border: "none",
+          }}
+          allowFullScreen
+          title="Unity WebGL Game"
+        ></iframe>
+      </div>
+
+      {/* Fullscreen Button – anchored outside bottom right of iframe */}
+      <button
+        onClick={() => {
+          const iframe = document.querySelector("iframe");
+          if (iframe?.contentWindow?.unityInstance?.SetFullscreen) {
+            iframe.contentWindow.unityInstance.SetFullscreen(1);
+          } else {
+            alert("Unity not loaded yet.");
+          }
+        }}
+        style={{
+          position: "absolute",
+          bottom: "-44px", // adjust spacing below iframe
+          right: "0",
+          backgroundColor: "#1F2937",
+          color: "#fff",
+          border: "none",
+          borderRadius: "6px",
+          padding: "6px 12px",
+          cursor: "pointer",
+          fontSize: "0.9rem",
+          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.4)",
+        }}
+      >
+        Fullscreen
+      </button>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
@@ -29,17 +94,9 @@ export default function Home() {
           <h2 className="text-3xl font-semibold mb-6">{/*Featured Projects*/}</h2>
 
           {/* Unity WebGL Embed */}
-          <div className="w-full max-w-5xl aspect-video relative rounded-xl overflow-hidden shadow-lg border border-gray-700 build">
-            <iframe
-              src="/Build/index.html"
-              className="absolute top-0 left-0 w-full h-full"
-              frameBorder="0"
-              scrolling="no"
-              allowFullScreen
-              title="Unity WebGL Game"
-            ></iframe>
-          </div>
-
+          <UnityBuild buildPath="/Build/index.html"/>
+          A space in between
+          <UnityBuild buildPath="/Build/index.html"/>
           <p className="mt-4 text-sm text-gray-400">
             {/*This is an embedded Unity WebGL game. Click inside to play!*/}
           </p>
@@ -57,7 +114,16 @@ export default function Home() {
         <section>
           <h2 className="text-3xl font-semibold mb-4">{/*Contact*/}</h2>
           <p className="text-gray-300 mb-2">{/*Email: shelkeaditya325@gmail.com*/}</p>
-          <p className="text-gray-300 mb-2">{/*LinkedIn: */}<Link href="https://linkedin.com/in/adityashelke" className="underline text-blue-400">{/*adityashelke*/}</Link></p>
+          <p className="text-gray-300 mb-2">
+            <a
+              href="https://linkedin.com/in/adityashelke"
+              className="underline text-blue-400"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              adityashelke
+            </a>
+          </p>
         </section>
       </section>
     </main>
