@@ -1,0 +1,23 @@
+{
+  "headers": {
+    "**/*.br": {
+      "Content-Encoding": "br",
+      "Content-Type": "application/octet-stream"
+    },
+    "**/*.wasm.br": {
+      "Content-Type": "application/wasm"
+    },
+    "**/*.js.br": {
+      "Content-Type": "application/javascript"
+    },
+    "**/*.data.br": {
+      "Content-Type": "application/octet-stream"
+    },
+    "**/*.framework.js.br": {
+      "Content-Type": "application/javascript"
+    },
+    "**/*.loader.js.br": {
+      "Content-Type": "application/javascript"
+    }
+  }
+}
