@@ -1,131 +1,89 @@
-// Starter Portfolio Template - Next.js + Tailwind + Framer Motion + Unity WebGL Embed
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import "./App.css"
+import SketchyBackground from './SketchyBackground';
 
-// File: app/page.tsx (for Next.js 13+ with App Router)
-'use client';
-import { motion } from "framer-motion";
-import "./App.css";
+export default function Portfolio() {
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
-function UnityBuild({buildPath}) {
+  useEffect(() => {
+    const updatePosition = (e) => {
+      setCursorPosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', updatePosition);
+    return () => window.removeEventListener('mousemove', updatePosition);
+  }, []);
+
   return (
-    <div
-      style={{
-        position: "relative",
-        maxWidth: "960px", // optional: control iframe width
-        margin: "0 auto 80px", // center on page
-      }}
-    >
-      {/* Aspect-ratio wrapper */}
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          paddingBottom: "56.25%", // 16:9 aspect ratio
-          height: 0,
-          borderRadius: "12px",
-          overflow: "hidden",
-          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
-          border: "2px solid rgb(187, 187, 187)",
-        }}
-      >
-        <iframe
-          src={buildPath} /*"/Build/index.html"*/
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            border: "none",
-          }}
-          allowFullScreen
-          title="Unity WebGL Game"
-        ></iframe>
-      </div>
+    <div className="relative w-full min-h-screen bg-black text-white font-sketch overflow-x-hidden">
+      <SketchyBackground />
+      <div className="relative w-full min-h-screen bg-black text-white font-sketch overflow-x-hidden cursor-none">
+        {/* Custom Cursor */}
+        <div
+          className="fixed w-6 h-6 border-2 border-white border-dashed rounded-full pointer-events-none z-50"
+          style={{ left: cursorPosition.x, top: cursorPosition.y, transform: 'translate(-50%, -50%)' }}
+        />
 
-      {/* Fullscreen Button – anchored outside bottom right of iframe */}
-      <button
-        onClick={() => {
-          const iframe = document.querySelector("iframe");
-          if (iframe?.contentWindow?.unityInstance?.SetFullscreen) {
-            iframe.contentWindow.unityInstance.SetFullscreen(1);
-          } else {
-            alert("Unity not loaded yet.");
-          }
-        }}
-        style={{
-          position: "absolute",
-          bottom: "-44px", // adjust spacing below iframe
-          right: "0",
-          backgroundColor: "#1F2937",
-          color: "#fff",
-          border: "none",
-          borderRadius: "6px",
-          padding: "6px 12px",
-          cursor: "pointer",
-          fontSize: "0.9rem",
-          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.4)",
-        }}
-      >
-        Fullscreen
-      </button>
-    </div>
-  );
-}
+        {/* Background Sketchy Texture */}
+        <div className="absolute inset-0 bg-[url('/sketch-bg.svg')] opacity-10 z-0"></div>
 
-export default function Home() {
-  return (
-    <main className="min-h-screen bg-black text-white px-4 md:px-12 py-10">
-      <section className="max-w-4xl mx-auto">
         {/* Hero Section */}
-        <motion.div
+        <motion.section
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          transition={{ duration: 1 }}
+          className="relative z-10 flex flex-col items-center justify-center text-center py-32"
         >
-          <h1 className="text-4xl md:text-6xl font-bold">{/*Aditya Shelke*/}</h1>
-          <p className="text-lg mt-4 text-gray-300">
-            {/*Game Developer*/}
-          </p>
-        </motion.div>
-
-        {/* Projects Section */}
-        <section className="mb-20">
-          <h2 className="text-3xl font-semibold mb-6">{/*Featured Projects*/}</h2>
-
-          {/* Unity WebGL Embed */}
-          <UnityBuild buildPath="/Build/index.html"/>
-          A space in between
-          <UnityBuild buildPath="/Build/index.html"/>
-          <p className="mt-4 text-sm text-gray-400">
-            {/*This is an embedded Unity WebGL game. Click inside to play!*/}
-          </p>
-        </section>
+          <h1 className="text-5xl md:text-6xl font-bold text-red-400 mb-4">Aditya Shelke</h1>
+          <p className="text-lg text-yellow-200 max-w-xl">Unity Developer | AI-Driven Game Mechanics | Puzzle & Detective Games</p>
+        </motion.section>
 
         {/* About Section */}
-        <section className="mb-20">
-          <h2 className="text-3xl font-semibold mb-4">{/*About Me*/}</h2>
-          <p className="text-gray-300 leading-relaxed">
-            {/*I'm a Unity developer with a focus on AI-driven gameplay mechanics. I enjoy solving complex problems using neural networks, machine learning, and game design. This portfolio is a showcase of the projects and experiments I've built independently and professionally.*/}
+        <motion.section
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="relative z-10 px-6 py-16 max-w-4xl mx-auto border-l-4 border-yellow-500 border-dashed"
+        >
+          <h2 className="text-3xl text-green-300 mb-4">About Me</h2>
+          <p className="text-white leading-relaxed">
+            I'm a Unity developer with a focus on AI-driven gameplay, especially in puzzle and detective genres. Skilled in neural networks, shaders, and performance optimization. I enjoy making games that challenge how players think.
           </p>
-        </section>
+        </motion.section>
 
-        {/* Contact Section */}
-        <section>
-          <h2 className="text-3xl font-semibold mb-4">{/*Contact*/}</h2>
-          <p className="text-gray-300 mb-2">{/*Email: shelkeaditya325@gmail.com*/}</p>
-          <p className="text-gray-300 mb-2">
-            <a
-              href="https://linkedin.com/in/adityashelke"
-              className="underline text-blue-400"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              adityashelke
-            </a>
-          </p>
-        </section>
-      </section>
-    </main>
+        {/* Projects Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.6 }}
+          className="relative z-10 px-6 py-16 max-w-6xl mx-auto"
+        >
+          <h2 className="text-3xl text-pink-400 mb-8">Projects</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="border-2 border-blue-500 border-dashed p-6 rounded-xl bg-black bg-opacity-30">
+              <h3 className="text-xl text-cyan-300 mb-2">Self-Driving Car</h3>
+              <p className="text-white">Car learns to drive using Neural Networks and Genetic Algorithms in Unity.</p>
+            </div>
+            <div className="border-2 border-red-500 border-dashed p-6 rounded-xl bg-black bg-opacity-30">
+              <h3 className="text-xl text-red-300 mb-2">NavCmd Game</h3>
+              <p className="text-white">Command-based bot navigation game overcoming obstacles intelligently.</p>
+            </div>
+            <div className="border-2 border-green-500 border-dashed p-6 rounded-xl bg-black bg-opacity-30">
+              <h3 className="text-xl text-green-300 mb-2">Aim Cannon Game</h3>
+              <p className="text-white">A shooter game focused on targeting moving objects to improve aim.</p>
+            </div>
+            <div className="border-2 border-yellow-400 border-dashed p-6 rounded-xl bg-black bg-opacity-30">
+              <h3 className="text-xl text-yellow-200 mb-2">Escape Game</h3>
+              <p className="text-white">Puzzle-based third-person game created in Unreal Engine 4 with 5 unique levels.</p>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Footer */}
+        <footer className="relative z-10 text-center py-12 border-t border-dashed border-white">
+          <p className="text-sm text-white">© 2025 Aditya Shelke | Made with Unity, Tailwind CSS & Love</p>
+        </footer>
+      </div>
+    </div>
   );
 }
