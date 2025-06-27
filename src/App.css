@@ -3,3 +3,6 @@ body
 {
     font-family: 'Patrick Hand';
 }
+* {
+  cursor: none !important;
+}
